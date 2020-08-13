@@ -86,6 +86,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "Jayvon and his Wife's Wonderful Life Together",
+    date: 'Sept 7th, 1993',
+    firstParagraph: `Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! Love peace HAPPINESS! `,
+
+    secondParagraph: `Vacation, Money. Beach. Los Angeles, Jet, Katara. Vacation, Money. Beach. Los Angeles, Jet, Katara. Vacation, Money. Beach. Los Angeles, Jet, Katara.Vacation, Money. Beach. Los Angeles, Jet, Katara.Vacation, Money. Beach. Los Angeles, Jet, Katara.Vacation, Money. Beach. Los Angeles, Jet, Katara.Vacation, Money. Beach. Los Angeles, Jet, Katara.Vacation, Money. Beach. Los Angeles, Jet, Katara.Vacation, Money. Beach. Los Angeles, Jet, Katara.Vacation, Money. Beach. Los Angeles, Jet, Katara. `,
+
+    thirdParagraph: `Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville.
+    Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville. Magic Black Panther - Wakanda... Lakers Kobe Family Harville.`
   }
 ];
 
@@ -114,3 +124,60 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+function createArticle(object) {
+// this is where I create all elements
+// parent div called article where child objects are stored
+ const article = document.createElement('div');
+ article.classList.add('article');
+ 
+ const artH2 = document.createElement('h2');
+ artH2.textContent = object.title;
+ 
+ const dateArt = document.createElement('p');
+ dateArt.classList.add('date'); 
+ dateArt.textContent = object.date;
+ 
+ const pOne = document.createElement('p');
+ pOne.textContent = object.firstParagraph;
+ 
+ const pTwo = document.createElement('p');
+ pTwo.textContent = object.secondParagraph;
+ 
+ const pThree = document.createElement('p');
+ pThree.textContent = object.thirdParagraph;
+
+ const pFour = document.createElement('p');
+ pFour.textContent = object.fourthParagraph;
+ 
+ const artBtn = document.createElement('span');
+//  added the class expandbutton already created to allow functionality of toggle feature
+ artBtn.classList.add('expandButton');
+ artBtn.textContent = ('OPEN/CLOSE');
+ 
+ //added the event listener for toggle
+ artBtn.addEventListener('click', () => {
+   //  added the class article-open already created to allow functionality of the event listener
+ article.classList.toggle('article-open');
+ })
+ 
+ // append everything to the DOM so that elements will show 
+ article.appendChild(artH2);
+ article.appendChild(dateArt);
+ article.appendChild(pOne);
+ article.appendChild(pTwo);
+ article.appendChild(pThree);
+ article.appendChild(pFour);
+ article.appendChild(artBtn);
+ 
+//  this line allows everything to show on DOM
+ return article;
+ }
+ 
+  // pulling data from json object 
+ articles = document.querySelector('.articles');
+ 
+ data.map(data => {
+ return articles.appendChild(createArticle(data));
+ });
